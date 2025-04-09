@@ -15,23 +15,27 @@ public class WebController {
         return "login";  // Return the name of the HTML template (Thymeleaf will resolve it)
     }
 
-    @PostMapping("/login")
+    @PostMapping("/login") //links to method: post on login.html
     public String handleUsername(
-        @RequestParam String username,
-        @RequestParam String password,
+        @RequestParam String username, //requesting username
+        @RequestParam String password, //reguesting password
         Model model)
     {
+        //checks if the values are correct
         if ("test".equalsIgnoreCase(username) && "pass".equalsIgnoreCase(password)) 
         {
+            //opens homepage method
             return "redirect:/homePage";
         }
         else
         {
+            //error message
             model.addAttribute("error", "Invalid username or password");
             return "login";
         }
     }
 
+    //opens homepage
     @GetMapping("/homePage")
     public String showHomePage()
     {
